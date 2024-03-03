@@ -1,7 +1,7 @@
 # Python手写数字demo(pytorch)
 fork from https://github.com/Oslomayor/mnist-pytorch-matplotlib
 
-加了两个框，没做其他判断
+加了两个框，增加判断
 
 handwrite.py图形化界面
 
