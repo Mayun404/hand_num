@@ -128,17 +128,22 @@ def on_mouse_release(event):
 # 预测
 def predict(event):
     global start_x, start_y, isdraw, fig, axs
-    img_name = './handwriting.png'
-    extent = axs[0].get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-    fig.savefig(img_name, bbox_inches=extent)
+    # 空白图形
+    if not axs[0].lines and not axs[0].patches and not axs[0].texts:
+        pass
+    else:
+        print("图形不为空")
+        img_name = './handwriting.png'
+        extent = axs[0].get_window_extent().transformed(fig.dpi_scale_trans.inverted())
+        fig.savefig(img_name, bbox_inches=extent)
 
-    img_array = read_image(img_name)    # 读图形
-    output = model(img_array)   # 预测
-    pred_num = output.max(1, keepdim=True)[1].item()
+        img_array = read_image(img_name)    # 读图形
+        output = model(img_array)   # 预测
+        pred_num = output.max(1, keepdim=True)[1].item()
 
-    print(f'the number {pred_num} is writen')
-    axs[1].text(0.25, 0.25, pred_num, {'size': 120})
-    axs[1].figure.canvas.draw()
+        print(f'the number {pred_num} is writen')
+        axs[1].text(0.25, 0.25, pred_num, {'size': 120})
+        axs[1].figure.canvas.draw()
 
 
 # 清除画面
