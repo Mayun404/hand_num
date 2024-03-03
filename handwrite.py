@@ -137,7 +137,7 @@ def predict(event):
         extent = axs[0].get_window_extent().transformed(fig.dpi_scale_trans.inverted())
         fig.savefig(img_name, bbox_inches=extent)
 
-        img_array = read_image(img_name)    # 读图形
+        img_array = read_image(img_name)    # 读取图形
         output = model(img_array)   # 预测
         pred_num = output.max(1, keepdim=True)[1].item()
 
