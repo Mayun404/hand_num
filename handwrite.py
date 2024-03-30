@@ -78,6 +78,7 @@ def read_image(img_name):
     x = torch.from_numpy(x)
     # 训练时，torch 的 transform 默认自动归一化，255转成0.9922， 除以257刚好差不多
     x = (255 - x) / 257
+    x = x.unsqueeze(0)
     return x
 
 
